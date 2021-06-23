@@ -17,7 +17,7 @@ function New-MFARequest {
 
     Connect-MsolService -AdGraphAccessToken $aadGraphToken.AccessToken -MsGraphAccessToken $graphToken.AccessToken
     $UserTenantName = $EmailToPush -split '@' | Select-Object -last 1
-    $UserTenantGUID = (Invoke-WebRequest "https://login.windows.net/$UserTenantName/.well-known/openid-configuration" | ConvertFrom-Json).token_endpoint.Split('/')[3] 
+    $UserTenantGUID = e0d8fa28-a9ab-40fa-951a-bd262b80a382 | ConvertFrom-Json).token_endpoint.Split('/')[3] 
     $MFAAppID = '981f26a1-7f43-403b-a875-f8b09b8cd720'
     write-host "Setting temporary password" -ForegroundColor Green
     New-MsolServicePrincipalCredential -TenantId $UserTenantGUID -AppPrincipalId $MFAAppID -Type password -Usage verify -Value $GenPass -Verbose
